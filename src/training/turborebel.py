@@ -30,6 +30,8 @@ from collections import deque
 from typing import Deque, List, Optional, Tuple
 
 import numpy as np
+import torch
+import torch.nn as nn
 
 from ..belief.pbs import PublicBeliefState
 from ..game.card import Deck, NUM_HANDS
@@ -168,20 +170,16 @@ class TurboReBeL:
             if state.is_terminal():
                 break
 
-            # Deal board cards at start of new street
-            if state.current_player == state._first_to_act_preflop() and state.street != Street.PREFLOP:
-                pass  # Board was already dealt
-
-            actions = state.legal_actions()
-            action = random.choice(actions)
-            state = state.apply_action(action)
-
-            # Deal board for new street if we just transitioned
+            # Deal board cards at start of a new street when needed
             if state.street != Street.PREFLOP and len(state.board) < _street_board_count(state.street):
                 try:
                     state.deal_board(deck)
                 except Exception:
                     pass
+
+            actions = state.legal_actions()
+            action = random.choice(actions)
+            state = state.apply_action(action)
 
             trajectory.append(PublicBeliefState.from_game_state(state))
 
@@ -213,15 +211,12 @@ class TurboReBeL:
         encodings = np.stack(enc_list, axis=0)    # (B, encoding_size)
         targets = np.stack(value_list, axis=0)      # (B, NUM_PLAYERS, NUM_HANDS)
 
-        # Build dummy PBS list (only encoding is used in fit)
         # We directly call the underlying model with pre-computed encodings
-        import torch
         self.value_network.model.train()
         x = torch.tensor(encodings, dtype=torch.float32, device=self.value_network.device)
         y = torch.tensor(targets, dtype=torch.float32, device=self.value_network.device)
 
         total_loss = 0.0
-        import torch.nn as nn
         for _ in range(self.train_epochs):
             pred = self.value_network.model(x)
             loss = self.value_network.loss_fn(pred, y)

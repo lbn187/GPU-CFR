@@ -27,6 +27,7 @@ from typing import Callable, Dict, List, Optional, Tuple
 import numpy as np
 
 from ..game.action import Action, ActionType
+from ..game.card import hand_index
 from ..game.state import GameState, NUM_PLAYERS
 
 # Type aliases
@@ -216,7 +217,6 @@ class RLCFR:
             v_per_hand = self.value_fn(state, p)  # shape (NUM_HANDS,)
             # Expected value for player p = expectation over their hole cards
             if state.hole_cards[p]:
-                from ..game.card import hand_index
                 c1, c2 = sorted(state.hole_cards[p])
                 h_idx = hand_index(c1, c2)
                 values[p] = float(v_per_hand[h_idx])

@@ -6,9 +6,13 @@ Author: Boning Li, Longbo Huang
 
 E-mail: li-bn22@mails.tsinghua.edu.cn
 
+## License
+
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
 ## Citation
 
-@article{li2026av,
+@article{li2026gpucfr,
   title={GPU-CFR: 80x Faster Counterfactual Regret Minimization by Compiling the Game to Static Dataflow and CUDA Graph Replay},
   author={Li, Boning and Huang, Longbo},
   journal={arXiv preprint arXiv:2609.11923},

@@ -1,14 +1,13 @@
 # GPU-CFR
 
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+[![Paper](https://img.shields.io/badge/arXiv-2609.11923-b31b1b.svg)](https://arxiv.org/abs/2609.11923)
+
 Code for the paper *"GPU-CFR: 80x Faster Counterfactual Regret Minimization by Compiling the Game to Static Dataflow and CUDA Graph Replay"*. 
 
 Author: Boning Li, Longbo Huang
 
 E-mail: li-bn22@mails.tsinghua.edu.cn
-
-## License
-
-[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ## Citation
 

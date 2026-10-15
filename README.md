@@ -3,8 +3,6 @@
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![Paper](https://img.shields.io/badge/arXiv-2609.11923-b31b1b.svg)](https://arxiv.org/abs/2609.11923)
 
-CFR is now faster on GPUs than on CPUs!
-
 ## Citation
 
 ```bibtex
